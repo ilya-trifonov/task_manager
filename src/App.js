@@ -85,7 +85,6 @@ class App extends Component {
             <div className="App">
                 <Title level={2} className="app-header">Менеджер задач</Title>
                 <AddTask addTask={this.addTask}/>
-                <p>Hello</p>
                 <Tasks
                     tasks={this.state.tasks}
                     deleteTask={this.deleteTask}
