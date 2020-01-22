@@ -1,9 +1,9 @@
 import React from 'react'
 import "antd/dist/antd.css";
-import { Row, Col, Button, Input } from 'antd';
+import { Row, Col, Button  } from 'antd';
 import { Collapse} from 'antd';
+import EditTask from "./EditTask";
 
-const { TextArea } = Input;
 const { Panel } = Collapse;
 
 const Tasks = ({tasks, deleteTask, onChangeTitle, onChangeDate, onChangeBody}) => {
@@ -16,9 +16,13 @@ const Tasks = ({tasks, deleteTask, onChangeTitle, onChangeDate, onChangeBody}) =
                     <div className="task-footer">
                         <Row>
                             <Col span={8}>
-                                <Input type="text" onChange={event => onChangeTitle(event.target.value, index)} value={task.title} />
-                                <Input type="date" onChange={event => onChangeDate(event.target.value, index)} value={task.date}/>
-                                <TextArea onChange={event => onChangeBody(event.target.value, index)} value={task.body}/>
+                                <EditTask
+                                task={task}
+                                onChangeTitle={onChangeTitle}
+                                onChangeDate={onChangeDate}
+                                onChangeBody={onChangeBody}
+                                index={index}
+                                />
                             </Col>
                             <Col span={16} className="right-button">
                                 <Button type="danger" className="delete" onClick={() => {deleteTask(task.id)}}>
