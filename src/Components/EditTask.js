@@ -59,5 +59,5 @@ render() {
         </div>
     )
 }
-};
+}
 export default EditTask

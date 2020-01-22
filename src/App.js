@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Tasks from "./Components/Task";
-import AddTask from "./Components/AddForm";
+import AddTask from "./Components/AddTask";
 import { Typography } from 'antd';
 
 
@@ -51,13 +51,14 @@ class App extends Component {
         })
     };
     onChangeTitle = (title, index) => {
+        console.log(title, index);
         let task = this.state.tasks[index];
         task.title = title;
         let tasks = [...this.state.tasks];
         tasks[index] = task;
         this.setState({
             tasks
-        })
+        });
     };
     onChangeDate = (date, index) => {
         let task = this.state.tasks[index];
@@ -83,7 +84,8 @@ class App extends Component {
         return (
             <div className="App">
                 <Title level={2} className="app-header">Менеджер задач</Title>
-                <AddForm addTask={this.addTask}/>
+                <AddTask addTask={this.addTask}/>
+                <p>Hello</p>
                 <Tasks
                     tasks={this.state.tasks}
                     deleteTask={this.deleteTask}
