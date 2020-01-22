@@ -1,31 +1,33 @@
 import React from 'react'
-import EditForm from "./EditForm";
 import "antd/dist/antd.css";
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Input } from 'antd';
 import { Collapse} from 'antd';
 
+const { TextArea } = Input;
 const { Panel } = Collapse;
 
-const Tasks = ({tasks, deleteTask, editTask}) => {
+const Tasks = ({tasks, deleteTask, onChangeTitle, onChangeDate, onChangeBody}) => {
 
     const taskList = tasks.length ? (
-        tasks.map(task => {
+        tasks.map((task, index) => {
             return (
-                        <Panel header={task.title} key={task.id} extra={<small>Исполнить до: <b>{task.date}</b></small>}>
-                            <p>{task.body}</p>
-                            <div className="task-footer">
-                                <Row>
-                                    <Col span={8}>
-                                        <EditForm editTask={editTask}/>
-                                    </Col>
-                                    <Col span={16} className="right-button">
-                                        <Button type="danger" className="delete" onClick={() => {deleteTask(task.id)}}>
-                                            <b>Завершить</b>
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Panel>
+                <Panel header={task.title} key={index} extra={<small>Исполнить до: <b>{task.date}</b></small>}>
+                    <p>{task.body}</p>
+                    <div className="task-footer">
+                        <Row>
+                            <Col span={8}>
+                                <Input type="text" onChange={event => onChangeTitle(event.target.value, index)} value={task.title} />
+                                <Input type="date" onChange={event => onChangeDate(event.target.value, index)} value={task.date}/>
+                                <TextArea onChange={event => onChangeBody(event.target.value, index)} value={task.body}/>
+                            </Col>
+                            <Col span={16} className="right-button">
+                                <Button type="danger" className="delete" onClick={() => {deleteTask(task.id)}}>
+                                    <b>Завершить</b>
+                                </Button>
+                            </Col>
+                        </Row>
+                    </div>
+                </Panel>
             );
         })
     ) : (
