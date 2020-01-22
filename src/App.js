@@ -9,8 +9,8 @@ const { Title } = Typography;
 
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             tasks: [
                 {
@@ -30,7 +30,8 @@ class App extends Component {
                     date: '2020-02-04'
                 }
             ],
-            showTasks: false
+            showTasks: false,
+            visible: false
         };
     }
 
@@ -49,8 +50,32 @@ class App extends Component {
             tasks
         })
     };
-    editTask = () => {
-        console.log('Hello')
+    onChangeTitle = (title, index) => {
+        let task = this.state.tasks[index];
+        task.title = title;
+        let tasks = [...this.state.tasks];
+        tasks[index] = task;
+        this.setState({
+            tasks
+        })
+    };
+    onChangeDate = (date, index) => {
+        let task = this.state.tasks[index];
+        task.date = date;
+        let tasks = [...this.state.tasks];
+        tasks[index] = task;
+        this.setState({
+            tasks
+        })
+    };
+    onChangeBody = (body, index) => {
+        let task = this.state.tasks[index];
+        task.body = body;
+        let tasks = [...this.state.tasks];
+        tasks[index] = task;
+        this.setState({
+            tasks
+        })
     };
 
     render() {
@@ -59,7 +84,13 @@ class App extends Component {
             <div className="App">
                 <Title level={2} className="app-header">Менеджер задач</Title>
                 <AddForm addTask={this.addTask}/>
-                <Tasks tasks={this.state.tasks} deleteTask={this.deleteTask} editTask={this.editTask}/>
+                <Tasks
+                    tasks={this.state.tasks}
+                    deleteTask={this.deleteTask}
+                    onChangeTitle={this.onChangeTitle}
+                    onChangeDate={this.onChangeDate}
+                    onChangeBody={this.onChangeBody}
+                />
             </div>
         );
     }
