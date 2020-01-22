@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import React, {Component} from 'react'
+import "antd/dist/antd.css";
+import {Button, Input, Modal, Form} from 'antd';
 
 const { TextArea } = Input;
 
-class EditForm extends Component {
-    constructor() {
-        super();
+class EditTask extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            tasks: [
-                {title: '', body: '', date: ''}
-            ],
-            visible: false
+            visible: false,
         };
     }
 
@@ -26,54 +24,40 @@ class EditForm extends Component {
         });
     };
 
-    handleChange = () => {
-        this.setState({
-            title: document.querySelector('.input-title').value,
-            body: document.querySelector('.input-text').value,
-            date: document.querySelector('.input-date').value
-        })
-    };
+render() {
 
-    handleSubmit = () => {
-        console.log(this.state);
-    };
 
-    render() {
+    return  (
+        <div>
+            <Button type="primary" onClick={this.showModal}>
+                <b>Редактировать задачу</b>
+            </Button>
+            <Modal
+                title="Редактировать задачу"
+                visible={this.state.visible}
+                onOk={this.handleCancel}
+                onCancel={this.handleCancel}
+                footer={[
+                    <Button key="submit" type="primary" onClick={this.handleCancel}>
+                        Готово
+                    </Button>
+                ]}
+            >
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Item label="Заголовок">
+                        <Input type="text" onChange={event => this.props.onChangeTitle(event.target.value, this.props.index)} value={this.props.task.title} />
+                    </Form.Item>
+                    <Form.Item label="Срок исполнения">
+                        <Input type="date" onChange={event => this.props.onChangeDate(event.target.value, this.props.index)} value={this.props.task.date} />
+                    </Form.Item>
+                    <Form.Item label="Описание задачи">
+                        <TextArea onChange={event => this.props.onChangeBody(event.target.value, this.props.index)} value={this.props.task.body}/>
+                    </Form.Item>
+                </Form>
+            </Modal>
 
-        return (
-            <div className="edit-button">
-                <Button type="default" onClick={this.showModal}>
-                    <b>Редактировать задачу</b>
-                </Button>
-                <Modal
-                    title="Редактировать задачу"
-                    visible={this.state.visible}
-                    onOk={this.handleSubmit}
-                    onCancel={this.handleCancel}
-                    footer={[
-                        <Button key="back" onClick={this.handleCancel}>
-                            Отмена
-                        </Button>,
-                        <Button key="submit" type="primary" onClick={this.handleSubmit}>
-                            Сохранить
-                        </Button>
-                    ]}
-                >
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Item label="Заголовок">
-                            <Input className="input-title" type="text" onChange={this.handleChange} value={this.state.title}/>
-                        </Form.Item>
-                        <Form.Item label="Срок исполнения">
-                            <Input className="input-date" type="date" onChange={this.handleChange} value={this.state.date}/>
-                        </Form.Item>
-                        <Form.Item label="Описание задачи">
-                            <TextArea className="input-text" onChange={this.handleChange} value={this.state.body} />
-                        </Form.Item>
-                    </Form>
-                </Modal>
-            </div>
-        )
-    }
+        </div>
+    )
 }
-
-export default EditForm
+};
+export default EditTask
