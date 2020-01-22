@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Tasks from "./Components/Task";
-import AddForm from "./Components/AddForm";
+import AddTask from "./Components/AddForm";
 import { Typography } from 'antd';
 
 
