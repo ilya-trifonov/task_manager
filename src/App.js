@@ -15,23 +15,24 @@ class App extends Component {
             tasks: [
                 {
                     id: 1,
-                    title: 'Задача 1', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    date: '2020-01-19'
+                    title: 'Задача 1',
+                    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    date: '2020-01-19',
                 },
                 {
                     id: 2,
                     title: 'Задача 2',
                     body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                    date: '2020-01-22'
+                    date: '2020-01-26',
                 },
                 {
                     id: 3,
-                    title: 'Задача 3', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-                    date: '2020-02-04'
+                    title: 'Задача 3',
+                    body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                    date: '2020-02-04',
                 }
             ],
             showTasks: false,
-            visible: false
         };
     }
 
@@ -51,7 +52,6 @@ class App extends Component {
         })
     };
     onChangeTitle = (title, index) => {
-        console.log(title, index);
         let task = this.state.tasks[index];
         task.title = title;
         let tasks = [...this.state.tasks];
@@ -80,7 +80,6 @@ class App extends Component {
     };
 
     render() {
-
         return (
             <div className="App">
                 <Title level={2} className="app-header">Менеджер задач</Title>

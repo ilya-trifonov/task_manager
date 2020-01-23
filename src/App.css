@@ -38,3 +38,12 @@
 .ant-form-item {
     margin-bottom: 0 !important;
 }
+.red {
+    background-color: #ff4d4f;
+}
+.yellow {
+    background-color: #fff835;
+}
+.add-button .ant-btn {
+    box-shadow: 0 11px 11px -5px rgba(24, 144, 255, 0.3);
+}
