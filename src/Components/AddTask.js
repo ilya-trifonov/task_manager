@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, Form, Input, Button } from 'antd';
+
 const { TextArea } = Input;
 
-class AddForm extends Component {
+class AddTask extends Component {
     constructor() {
         super();
         this.state = {
@@ -82,4 +83,4 @@ class AddForm extends Component {
     }
 }
 
-export default AddForm
+export default AddTask
