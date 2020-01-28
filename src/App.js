@@ -4,9 +4,7 @@ import Tasks from "./Components/Task";
 import AddTask from "./Components/AddTask";
 import { Typography } from 'antd';
 
-
 const { Title } = Typography;
-
 
 class App extends Component {
     constructor(props) {
